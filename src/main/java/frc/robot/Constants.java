@@ -28,9 +28,9 @@ public final class Constants {
   public static class DriveConstants {
     // Motor CAN ID'leri
     public static final int kLeftFrontID = 11;//11
-    public static final int kLeftBackID = 12;//12
-    public static final int kRightFrontID = 13;//13 
-    public static final int kRightBackID = 14; // 4 yerine tahmin ediyorum, SparkMax hatasına göre düzenlenmeli
+    public static final int kLeftBackID = 14;//12
+    public static final int kRightFrontID = 19;//13 
+    public static final int kRightBackID = 12; // 4 yerine tahmin ediyorum, SparkMax hatasına göre düzenlenmeli
 
     // Gyro
     public static final int kPigeonID = 15;
@@ -118,6 +118,18 @@ public final class Constants {
   }
 
   public static class IntakeConstants {
-    public static final int intakeID =  19;
+    public static final int intakeID =  13;
+  }
+
+  public static class PneumaticConstants {
+    // PCM/CAN ID. Eğer roboRIO üzerindeki modül farklı ise burayı düzenleyin.
+    public static final int kPcmId = 0;
+
+    // Solenoid kanalları (CTRE PCM örneği: forward/reverse port numaraları)
+    // Varsayılanlar: 0/1 ve 2/3. Kablo bağlamanıza göre değiştirin.
+    public static final int kSolenoidAForward = 0;
+    public static final int kSolenoidAReverse = 1;
+    public static final int kSolenoidBForward = 2;
+    public static final int kSolenoidBReverse = 3;
   }
 }

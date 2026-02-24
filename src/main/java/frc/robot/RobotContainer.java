@@ -17,6 +17,7 @@ import frc.robot.subsystems.ConveyorSubsystem;
 import frc.robot.subsystems.DriveTrainSubsystems;
 import frc.robot.subsystems.ShooterSubsystem;
 import frc.robot.subsystems.VisionSubsystem;
+import frc.robot.subsystems.PneumaticSubsystem;
 import java.util.Optional;
 import org.photonvision.EstimatedRobotPose;
 import edu.wpi.first.wpilibj.DriverStation;
@@ -39,6 +40,7 @@ public class RobotContainer {
     private final ConveyorSubsystem m_conveyorSubsystem = new ConveyorSubsystem();
     private final VisionSubsystem m_visionSubsystem = new VisionSubsystem();
     private final IntakeSubsystem m_intakeSubsystem = new IntakeSubsystem();
+    private final PneumaticSubsystem m_pneumatic = new PneumaticSubsystem();
     // Yeni eklendi
 
     // PID Kontrolcü (Hizalama için)
@@ -92,7 +94,7 @@ public class RobotContainer {
                 new JoystickDriveCommand(
                         m_robotDrive,
                         () -> -m_driverController.getRawAxis(1),
-                        () -> m_driverController.getRawAxis(4)));
+                        () -> m_driverController.getRawAxis(3)));
 
         // Shooter Kontrolü: 6. Buton (Xbox Right Bumper / RB)
         // Basılı tutulduğunda çalışır, bırakıldığında durur.
@@ -182,8 +184,22 @@ public class RobotContainer {
 
         // --- TEST BUTONLARI ---
 
-        // BUTON 2: Sadece Leader Motorlar (Follower'lar da dönecek çünkü follow
-        // yapılandı)
+    // --- PNEUMATICS (örnek) ---
+    // Buton 7: Toggle both solenoids birlikte
+    m_driverController.button(7).onTrue(m_pneumatic.toggleBothCommand());
+
+    // Buton 8: Solenoid B toggle
+    m_driverController.button(8).onTrue(m_pneumatic.toggleBCommand());
+
+    // Buton 9: İki solenoidi aç (forward)
+    m_driverController.button(9).onTrue(m_pneumatic.extendBoth());
+
+    // Buton 10: İki solenoidi kapat (reverse)
+    m_driverController.button(10).onTrue(m_pneumatic.retractBoth());
+
+    // --- TEST BUTONLARI ---
+    // BUTON 2: Sadece Leader Motorlar (Follower'lar da dönecek çünkü follow
+    // yapılandı)
 
     }
 
